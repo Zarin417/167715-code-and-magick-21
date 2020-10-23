@@ -65,6 +65,8 @@ const getWizardsArray = (names, surnames, coatColors, eyesColors) => {
   return wizards;
 };
 
+const wizardsArray = getWizardsArray(FIRST_NAMES, SECOND_NAMES, COAT_COLORS, EYES_COLORS);
+
 // Create DOM-element based on template
 const createWizard = (wizard) => {
   const wizardElement = similarWizardTemplate.cloneNode(true);
@@ -74,8 +76,6 @@ const createWizard = (wizard) => {
   wizardElement.querySelector(`.wizard-eyes`).style.fill = wizard.eyesColor;
   return wizardElement;
 };
-
-const wizardsArray = getWizardsArray(FIRST_NAMES, SECOND_NAMES, COAT_COLORS, EYES_COLORS);
 
 // Rendering of created elements
 const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)

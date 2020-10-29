@@ -138,44 +138,43 @@ const getWizardPartColor = (colors) => {
   return color;
 };
 
-const setWizardPartColorFill = (input, element, colors) => {
+const setWizardPartColor = (input, element, colors) => {
   input.value = getWizardPartColor(colors);
-  element.style.fill = input.value;
+  if (element === fireballWrap) {
+    element.style.backgroundColor = input.value;
+  } else {
+    element.style.fill = input.value;
+  }
 };
 
-const setWizardPartColorBg = (input, element, colors) => {
-  input.value = getWizardPartColor(colors);
-  element.style.backgroundColor = input.value;
+const wizardCoatColorHandler = () => {
+  setWizardPartColor(wizardCoatInput, wizardCoat, COAT_COLORS);
 };
 
-const wizardCoatFillHandler = () => {
-  setWizardPartColorFill(wizardCoatInput, wizardCoat, COAT_COLORS);
+const wizardEyesColorHandler = () => {
+  setWizardPartColor(wizardEyesInput, wizardEyes, EYES_COLORS);
 };
 
-const wizardEyesFillHandler = () => {
-  setWizardPartColorFill(wizardEyesInput, wizardEyes, EYES_COLORS);
-};
-
-const wizardFireballBgHandler = () => {
-  setWizardPartColorBg(fireballInput, fireballWrap, FIREBALL_COLORS);
+const wizardFireballColorHandler = () => {
+  setWizardPartColor(fireballInput, fireballWrap, FIREBALL_COLORS);
 };
 
 const openSetupWindow = () => {
   setupWindow.classList.remove(`hidden`);
   document.addEventListener(`keydown`, setupWindowEscPressHandler);
   setupUserName.addEventListener(`invalid`, setupUserNameValidationHandler);
-  wizardCoat.addEventListener(`click`, wizardCoatFillHandler);
-  wizardEyes.addEventListener(`click`, wizardEyesFillHandler);
-  fireball.addEventListener(`click`, wizardFireballBgHandler);
+  wizardCoat.addEventListener(`click`, wizardCoatColorHandler);
+  wizardEyes.addEventListener(`click`, wizardEyesColorHandler);
+  fireball.addEventListener(`click`, wizardFireballColorHandler);
 };
 
 const closeSetupWindow = () => {
   setupWindow.classList.add(`hidden`);
   document.removeEventListener(`keydown`, setupWindowEscPressHandler);
   setupUserName.removeEventListener(`invalid`, setupUserNameValidationHandler);
-  wizardCoat.removeEventListener(`click`, wizardCoatFillHandler);
-  wizardEyes.removeEventListener(`click`, wizardEyesFillHandler);
-  fireball.removeEventListener(`click`, wizardFireballBgHandler);
+  wizardCoat.removeEventListener(`click`, wizardCoatColorHandler);
+  wizardEyes.removeEventListener(`click`, wizardEyesColorHandler);
+  fireball.removeEventListener(`click`, wizardFireballColorHandler);
 };
 
 // Add listeners

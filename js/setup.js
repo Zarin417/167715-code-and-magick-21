@@ -13,6 +13,7 @@
   const fireballWrap = setupPlayer.querySelector(`.setup-fireball-wrap`);
   const fireball = fireballWrap.querySelector(`.setup-fireball`);
   const fireballInput = fireballWrap.querySelector(`input[name='fireball-color']`);
+  const dialogIcon = setupWindow.querySelector(`.upload`);
 
   /* Create listeners for buttons to open and close the settings window; for changing wizard's coat, eyes and fireball colors.
     Change validation massage for user name field.
@@ -57,13 +58,13 @@
 
   const closeSetupWindow = () => {
     setupWindow.classList.add(`hidden`);
-    setupWindow.removeAttribute(`style`);
+    window.dialog.setDefaultPosition();
     document.removeEventListener(`keydown`, setupWindowEscPressHandler);
     setupUserName.removeEventListener(`invalid`, setupUserNameValidationHandler);
     wizardCoat.removeEventListener(`click`, wizardCoatColorHandler);
     wizardEyes.removeEventListener(`click`, wizardEyesColorHandler);
     fireball.removeEventListener(`click`, wizardFireballColorHandler);
-    window.dialog.handle.removeEventListener(`mousedown`, window.dialog.handler);
+    dialogIcon.removeEventListener(`mousedown`, window.dialog.handler);
   };
 
   const openSetupWindow = () => {
@@ -73,7 +74,7 @@
     wizardCoat.addEventListener(`click`, wizardCoatColorHandler);
     wizardEyes.addEventListener(`click`, wizardEyesColorHandler);
     fireball.addEventListener(`click`, wizardFireballColorHandler);
-    window.dialog.handle.addEventListener(`mousedown`, window.dialog.handler);
+    dialogIcon.addEventListener(`mousedown`, window.dialog.handler);
   };
 
   // Add listeners

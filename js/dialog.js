@@ -2,7 +2,16 @@
 
 (() => {
   const setupWindow = document.querySelector(`.setup`);
-  const dialogHandle = setupWindow.querySelector(`.upload`);
+  const dialogIcon = setupWindow.querySelector(`.upload`);
+  const windowDefaultStyles = window.getComputedStyle(setupWindow);
+  const defaultTop = windowDefaultStyles.top;
+  const defaultLeft = windowDefaultStyles.left;
+
+  // Set window in default position after close
+  const setDefaultPositionSetupWindow = () => {
+    setupWindow.style.top = defaultTop;
+    setupWindow.style.left = defaultLeft;
+  };
 
   // Settings window move handler
   const dialogHandler = (evt) => {
@@ -42,10 +51,10 @@
       if (dragged) {
         const clickPreventDefaultHandler = (clickEvt) => {
           clickEvt.preventDefault();
-          dialogHandle.removeEventListener(`click`, clickPreventDefaultHandler);
+          dialogIcon.removeEventListener(`click`, clickPreventDefaultHandler);
         };
 
-        dialogHandle.addEventListener(`click`, clickPreventDefaultHandler);
+        dialogIcon.addEventListener(`click`, clickPreventDefaultHandler);
       }
     };
 
@@ -54,7 +63,7 @@
   };
 
   window.dialog = {
-    handle: dialogHandle,
-    handler: dialogHandler
+    handler: dialogHandler,
+    setDefaultPosition: setDefaultPositionSetupWindow
   };
 })();

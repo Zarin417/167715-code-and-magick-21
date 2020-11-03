@@ -53,14 +53,14 @@
   };
 
   // If event target Enter
-  const enterEvent = (evt, action) => {
+  const setEnterEvent = (evt, action) => {
     if (evt.key === `Enter`) {
       action();
     }
   };
 
   // If event target Escape
-  const escapeEvent = (evt, action) => {
+  const setEscapeEvent = (evt, action) => {
     if (evt.key === `Escape`) {
       evt.preventDefault();
       action();
@@ -70,7 +70,7 @@
   window.util = {
     wizardsParameters: WizardsParam,
     randomInt: getRandomInteger,
-    isEnterEvent: enterEvent,
-    isEscEvent: escapeEvent
+    isEnterEvent: setEnterEvent,
+    isEscEvent: setEscapeEvent
   };
 })();

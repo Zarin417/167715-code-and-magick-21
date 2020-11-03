@@ -35,6 +35,12 @@
     ctx.fill();
   };
 
+  // Random color for other players
+  const getRandomColor = () => {
+    const shadeOfBlue = `hsl(240, ${Math.floor(Math.random() * 100)}%, 50%)`;
+    return shadeOfBlue;
+  };
+
   // Rendering text in cloud after win
   const renderText = (ctx, text, x, y) => {
     ctx.font = TEXT_FONT;
@@ -65,7 +71,7 @@
 
       renderText(ctx, name, BAR_X + (BAR_WIDTH + BAR_GAP) * index, BAR_Y);
 
-      ctx.fillStyle = (name === `Вы`) ? PLAYER_COLOR : `hsl(240, ${Math.floor(Math.random() * 100)}%, 50%)`;
+      ctx.fillStyle = (name === `Вы`) ? PLAYER_COLOR : getRandomColor();
       ctx.fillRect(BAR_X + (BAR_WIDTH + BAR_GAP) * index, BAR_Y - GAP, BAR_WIDTH, barHeight);
 
       renderText(ctx, Math.round(times[index]), BAR_X + (BAR_WIDTH + BAR_GAP) * index, BAR_Y - GAP + barHeight - TEXT_GAP);

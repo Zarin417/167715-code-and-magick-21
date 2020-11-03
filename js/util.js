@@ -1,8 +1,7 @@
 'use strict';
 
 (() => {
-  const WIZARDS_PARAMETERS = {
-    WIZARDS_AMOUNT: 4,
+  const WizardsParam = {
     NAMES: [
       `Иван`,
       `Хуан Себастьян`,
@@ -46,7 +45,6 @@
       `#e6e848`
     ]
   };
-  const setupWindow = document.querySelector(`.setup`);
 
   // Get a random number in a given range
   const getRandomInteger = (min, max) => {
@@ -54,20 +52,25 @@
     return Math.floor(randomInteger);
   };
 
-  window.util = {
-    wizardsParameters: WIZARDS_PARAMETERS,
-    setup: setupWindow,
-    randomInt: getRandomInteger,
-    isEnterEvent: (evt, action) => {
-      if (evt.key === `Enter`) {
-        action();
-      }
-    },
-    isEscEvent: (evt, action) => {
-      if (evt.key === `Escape`) {
-        evt.preventDefault();
-        action();
-      }
+  // If event target Enter
+  const enterEvent = (evt, action) => {
+    if (evt.key === `Enter`) {
+      action();
     }
+  };
+
+  // If event target Escape
+  const escapeEvent = (evt, action) => {
+    if (evt.key === `Escape`) {
+      evt.preventDefault();
+      action();
+    }
+  };
+
+  window.util = {
+    wizardsParameters: WizardsParam,
+    randomInt: getRandomInteger,
+    isEnterEvent: enterEvent,
+    isEscEvent: escapeEvent
   };
 })();

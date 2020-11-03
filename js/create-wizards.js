@@ -1,17 +1,25 @@
 'use strict';
 
 (() => {
-  const setupSimilar = window.util.setup.querySelector(`.setup-similar`);
+  const WIZARDS_AMOUNT = 4;
+  const setupWindow = document.querySelector(`.setup`);
+  const setupSimilar = setupWindow.querySelector(`.setup-similar`);
 
   setupSimilar.classList.remove(`hidden`);
+
+  // Get random name with surname from given arrays and concatenate
+  const getRandomFullName = (name, surname) => {
+    const fullName = name[window.util.randomInt(0, name.length - 1)] + ` ` + surname[window.util.randomInt(0, surname.length - 1)];
+    return fullName;
+  };
 
   // Create array with wizards settings
   const getWizardsArray = (names, surnames, coatColors, eyesColors) => {
     const wizards = [];
 
-    for (let i = 0; i < window.util.wizardsParameters.WIZARDS_AMOUNT; i++) {
+    for (let i = 0; i < WIZARDS_AMOUNT; i++) {
       wizards.push({
-        name: names[window.util.randomInt(0, names.length - 1)] + ` ` + surnames[window.util.randomInt(0, surnames.length - 1)],
+        name: getRandomFullName(names, surnames),
         coatColor: coatColors[window.util.randomInt(0, coatColors.length - 1)],
         eyesColor: eyesColors[window.util.randomInt(0, eyesColors.length - 1)]
       });

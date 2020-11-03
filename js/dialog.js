@@ -1,11 +1,11 @@
 'use strict';
 
 (() => {
-  const setup = window.util.setup;
-  const dialogHandle = setup.querySelector(`.upload`);
+  const setupWindow = document.querySelector(`.setup`);
+  const dialogHandle = setupWindow.querySelector(`.upload`);
 
   // Settings window move handler
-  const dialogHandleHandler = (evt) => {
+  const dialogHandler = (evt) => {
     evt.preventDefault();
 
     let startCoords = {
@@ -28,8 +28,8 @@
         y: moveEvt.clientY
       };
 
-      setup.style.top = (setup.offsetTop - shift.y) + `px`;
-      setup.style.left = (setup.offsetLeft - shift.x) + `px`;
+      setupWindow.style.top = (setupWindow.offsetTop - shift.y) + `px`;
+      setupWindow.style.left = (setupWindow.offsetLeft - shift.x) + `px`;
 
     };
 
@@ -55,6 +55,6 @@
 
   window.dialog = {
     handle: dialogHandle,
-    handleHandler: dialogHandleHandler
+    handler: dialogHandler
   };
 })();

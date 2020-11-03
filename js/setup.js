@@ -2,9 +2,10 @@
 
 (() => {
   const setupOpen = document.querySelector(`.setup-open`);
-  const setupClose = window.util.setup.querySelector(`.setup-close`);
-  const setupUserName = window.util.setup.querySelector(`.setup-user-name`);
-  const setupPlayer = window.util.setup.querySelector(`.setup-player`);
+  const setupWindow = document.querySelector(`.setup`);
+  const setupClose = setupWindow.querySelector(`.setup-close`);
+  const setupUserName = setupWindow.querySelector(`.setup-user-name`);
+  const setupPlayer = setupWindow.querySelector(`.setup-player`);
   const wizardCoat = setupPlayer.querySelector(`.wizard-coat`);
   const wizardCoatInput = setupPlayer.querySelector(`input[name='coat-color']`);
   const wizardEyes = setupPlayer.querySelector(`.wizard-eyes`);
@@ -55,24 +56,24 @@
   };
 
   const closeSetupWindow = () => {
-    window.util.setup.classList.add(`hidden`);
-    window.util.setup.removeAttribute(`style`);
+    setupWindow.classList.add(`hidden`);
+    setupWindow.removeAttribute(`style`);
     document.removeEventListener(`keydown`, setupWindowEscPressHandler);
     setupUserName.removeEventListener(`invalid`, setupUserNameValidationHandler);
     wizardCoat.removeEventListener(`click`, wizardCoatColorHandler);
     wizardEyes.removeEventListener(`click`, wizardEyesColorHandler);
     fireball.removeEventListener(`click`, wizardFireballColorHandler);
-    window.dialog.handle.removeEventListener(`mousedown`, window.dialog.handleHandler);
+    window.dialog.handle.removeEventListener(`mousedown`, window.dialog.handler);
   };
 
   const openSetupWindow = () => {
-    window.util.setup.classList.remove(`hidden`);
+    setupWindow.classList.remove(`hidden`);
     document.addEventListener(`keydown`, setupWindowEscPressHandler);
     setupUserName.addEventListener(`invalid`, setupUserNameValidationHandler);
     wizardCoat.addEventListener(`click`, wizardCoatColorHandler);
     wizardEyes.addEventListener(`click`, wizardEyesColorHandler);
     fireball.addEventListener(`click`, wizardFireballColorHandler);
-    window.dialog.handle.addEventListener(`mousedown`, window.dialog.handleHandler);
+    window.dialog.handle.addEventListener(`mousedown`, window.dialog.handler);
   };
 
   // Add listeners

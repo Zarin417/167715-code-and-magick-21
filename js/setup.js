@@ -3,6 +3,7 @@
 (() => {
   const setupOpen = document.querySelector(`.setup-open`);
   const setupWindow = document.querySelector(`.setup`);
+  const setupForm = setupWindow.querySelector(`.setup-wizard-form`);
   const setupClose = setupWindow.querySelector(`.setup-close`);
   const setupUserName = setupWindow.querySelector(`.setup-user-name`);
   const setupPlayer = setupWindow.querySelector(`.setup-player`);
@@ -56,10 +57,17 @@
     }
   };
 
+  const submitSetupFormHandler = (evt) => {
+    evt.preventDefault();
+    window.backend.save(closeSetupWindow, window.util.showError, new FormData(setupForm));
+  };
+
   const closeSetupWindow = () => {
     setupWindow.classList.add(`hidden`);
     window.dialog.setDefaultPosition();
     document.removeEventListener(`keydown`, setupWindowEscPressHandler);
+    setupClose.removeEventListener(`click`, closeSetupWindow);
+    setupForm.removeEventListener(`submit`, submitSetupFormHandler);
     setupUserName.removeEventListener(`invalid`, setupUserNameValidationHandler);
     wizardCoat.removeEventListener(`click`, wizardCoatColorHandler);
     wizardEyes.removeEventListener(`click`, wizardEyesColorHandler);
@@ -70,6 +78,8 @@
   const openSetupWindow = () => {
     setupWindow.classList.remove(`hidden`);
     document.addEventListener(`keydown`, setupWindowEscPressHandler);
+    setupClose.addEventListener(`click`, closeSetupWindow);
+    setupForm.addEventListener(`submit`, submitSetupFormHandler);
     setupUserName.addEventListener(`invalid`, setupUserNameValidationHandler);
     wizardCoat.addEventListener(`click`, wizardCoatColorHandler);
     wizardEyes.addEventListener(`click`, wizardEyesColorHandler);
@@ -83,7 +93,6 @@
     window.util.isEnterEvent(evt, openSetupWindow);
   });
 
-  setupClose.addEventListener(`click`, closeSetupWindow);
   setupClose.addEventListener(`keydown`, (evt) => {
     window.util.isEnterEvent(evt, closeSetupWindow);
   });

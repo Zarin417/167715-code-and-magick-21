@@ -2,26 +2,6 @@
 
 (() => {
   const WizardsParam = {
-    NAMES: [
-      `Иван`,
-      `Хуан Себастьян`,
-      `Мария`,
-      `Кристоф`,
-      `Виктор`,
-      `Юлия`,
-      `Люпита`,
-      `Вашингтон`
-    ],
-    SURNAMES: [
-      `да Марья`,
-      `Верон`,
-      `Мирабелла`,
-      `Вальц`,
-      `Онопко`,
-      `Топольницкая`,
-      `Нионго`,
-      `Ирвинг`
-    ],
     COAT_COLORS: [
       `rgb(101, 137, 164)`,
       `rgb(241, 43, 107)`,
@@ -67,10 +47,26 @@
     }
   };
 
+  // Show error message
+  const showErrorMessage = (errorMessage) => {
+    const node = document.createElement(`div`);
+    node.style.zIndex = `100`;
+    node.style.margin = `0 auto`;
+    node.style.textAlign = `center`;
+    node.style.backgroundColor = `#ff156d`;
+    node.style.position = `absolute`;
+    node.style.left = `0`;
+    node.style.right = `0`;
+    node.style.fontSize = `30px`;
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement(`afterbegin`, node);
+  };
+
   window.util = {
     wizardsParameters: WizardsParam,
     randomInt: getRandomInteger,
     isEnterEvent: setEnterEvent,
-    isEscEvent: setEscapeEvent
+    isEscEvent: setEscapeEvent,
+    showError: showErrorMessage,
   };
 })();

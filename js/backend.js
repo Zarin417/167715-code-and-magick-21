@@ -10,6 +10,11 @@
     GET: `https://21.javascript.pages.academy/code-and-magick/data`,
     POST: `https://21.javascript.pages.academy/code-and-magick`
   };
+  const RequestStatus = {
+    400: `Ошибка в запросе`,
+    404: `Запрашиваемые данные не найдены`,
+    500: `Сервер не может обработать запрос`
+  };
 
   const createRequest = (type, url, onSuccess, onError, data) => {
     const xhr = new XMLHttpRequest();
@@ -21,19 +26,22 @@
 
       switch (xhr.status) {
         case 200:
+          if (document.body.firstElementChild.classList.contains(`error-message`)) {
+            document.body.firstElementChild.remove();
+          }
           onSuccess((type === `GET`) ? xhr.response : null);
           break;
 
         case 400:
-          error = `Ошибка в запросе`;
+          error = RequestStatus[`400`];
           break;
 
         case 404:
-          error = `Запрашиваемые данные не найдены`;
+          error = RequestStatus[`404`];
           break;
 
         case 500:
-          error = `Сервер не может обработать запрос`;
+          error = RequestStatus[`500`];
           break;
 
         default:
@@ -62,16 +70,16 @@
     }
   };
 
-  const downloadData = (onLoad, onError) => {
+  const loadData = (onLoad, onError) => {
     createRequest(RequestType.GET, Url.GET, onLoad, onError);
   };
 
-  const uploadData = (onLoad, onError, data) => {
+  const saveData = (onLoad, onError, data) => {
     createRequest(RequestType.POST, Url.POST, onLoad, onError, data);
   };
 
   window.backend = {
-    load: downloadData,
-    save: uploadData
+    load: loadData,
+    save: saveData
   };
 })();

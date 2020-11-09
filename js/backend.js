@@ -10,6 +10,12 @@
     GET: `https://21.javascript.pages.academy/code-and-magick/data`,
     POST: `https://21.javascript.pages.academy/code-and-magick`
   };
+  const StatusCode = {
+    OK: 200,
+    BAD_REQUEST: 400,
+    NOT_FOUND: 404,
+    SERVER_ERROR: 500
+  };
   const RequestStatus = {
     400: `Ошибка в запросе`,
     404: `Запрашиваемые данные не найдены`,
@@ -25,22 +31,22 @@
       let error;
 
       switch (xhr.status) {
-        case 200:
+        case StatusCode.OK:
           if (document.body.firstElementChild.classList.contains(`error-message`)) {
             document.body.firstElementChild.remove();
           }
           onSuccess((type === `GET`) ? xhr.response : null);
           break;
 
-        case 400:
+        case StatusCode.BAD_REQUEST:
           error = RequestStatus[`400`];
           break;
 
-        case 404:
+        case StatusCode.NOT_FOUND:
           error = RequestStatus[`404`];
           break;
 
-        case 500:
+        case StatusCode.SERVER_ERROR:
           error = RequestStatus[`500`];
           break;
 

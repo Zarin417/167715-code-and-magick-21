@@ -16,7 +16,7 @@
     NOT_FOUND: 404,
     SERVER_ERROR: 500
   };
-  const RequestStatus = {
+  const StatusText = {
     400: `Ошибка в запросе`,
     404: `Запрашиваемые данные не найдены`,
     500: `Сервер не может обработать запрос`
@@ -39,15 +39,15 @@
           break;
 
         case StatusCode.BAD_REQUEST:
-          error = RequestStatus[`400`];
+          error = StatusText[`400`];
           break;
 
         case StatusCode.NOT_FOUND:
-          error = RequestStatus[`404`];
+          error = StatusText[`404`];
           break;
 
         case StatusCode.SERVER_ERROR:
-          error = RequestStatus[`500`];
+          error = StatusText[`500`];
           break;
 
         default:

@@ -32,8 +32,8 @@
 
       switch (xhr.status) {
         case StatusCode.OK:
-          if (document.body.firstElementChild.classList.contains(`error-message`)) {
-            document.body.firstElementChild.remove();
+          if (document.querySelector(`.error-message`)) {
+            document.querySelector(`.error-message`).remove();
           }
           onSuccess((type === `GET`) ? xhr.response : null);
           break;

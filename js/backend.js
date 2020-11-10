@@ -39,15 +39,15 @@
           break;
 
         case StatusCode.BAD_REQUEST:
-          error = StatusText[`400`];
+          error = StatusText[StatusCode.BAD_REQUEST];
           break;
 
         case StatusCode.NOT_FOUND:
-          error = StatusText[`404`];
+          error = StatusText[StatusCode.NOT_FOUND];
           break;
 
         case StatusCode.SERVER_ERROR:
-          error = StatusText[`500`];
+          error = StatusText[StatusCode.SERVER_ERROR];
           break;
 
         default:
